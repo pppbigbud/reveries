@@ -73,6 +73,7 @@ ob_start();
 
 
             $output = ob_get_clean();
+            // echo $output;
             echo '<script>location.replace("' . home_url() . '");</script>';
             exit; // Arrêtez l'exécution du script.
         }
