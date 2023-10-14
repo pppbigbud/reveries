@@ -235,49 +235,24 @@ add_action('wp_ajax_nopriv_filter_articles_page', 'filter_articles_page');
 // CUSTOM CART pour woo-commerce
 function custom_cart_content()
 {
-    ob_start();
-    $cart_count = WC()->cart->get_cart_contents_count();
-
-    ?>
-
+    // ob_start();
+    $cart_count = WC()->cart->get_cart_contents_count(); ?>
     <div class="custom-cart">
         <?php if ($cart_count > 0) { ?>
             <div class="cart-count">
                 <?php echo $cart_count; ?>
             </div>
-        <?php
-            } ?>
+        <?php } ?>
         <a href="<?php echo wc_get_cart_url(); ?>" class="imgCart">
             <img src="<?php echo get_template_directory_uri(); ?>/svg/cart.svg" alt="Panier Reverie et petits plis">
+            <p class="connectTxtSideBar">Panier</p>
         </a>
     </div>
 
 <?php
 
-    return ob_get_clean();
+    // return ob_get_clean();
 }
-
-
-// SPLIT CLIENT ACCOUNT TABLE vs ADMIN ACOUNT
-
-// Créer un rôle utilisateur personnalisé pour les clients WooCommerce
-// function create_woocommerce_customer_role()
-// {
-//     add_role('woocommerce_customer', 'Client WooCommerce', array(
-//         'read' => true, // Les clients peuvent lire les informations de leur compte
-//         // Ajoutez d'autres autorisations nécessaires ici
-//     ));
-// }
-// add_action('init', 'create_woocommerce_customer_role');
-
-// Attribuer le rôle aux utilisateurs lors de leur inscription via WooCommerce
-function assign_woocommerce_customer_role($user_id)
-{
-    $user = new WP_User($user_id);
-    $user->add_role('woocommerce_customer');
-}
-add_action('woocommerce_created_customer', 'assign_woocommerce_customer_role');
-
 
 // CUSTOM CLIENT ACCOUNT pour woo-commerce
 
@@ -288,17 +263,29 @@ function custom_account_link()
         <?php if (is_user_logged_in()) { // Vérifiez si l'utilisateur est connecté 
                 $my_account_url = get_permalink(wc_get_page_id('myaccount'));
                 ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/svg/cart.svg" alt="Panier Reverie et petits plis">
-            <a href="<?php echo $my_account_url; ?>" class="imgCart">Mon Compte</a>
-        <?php } else { 
-            $custom_account_url = home_url('/page-dinscription'); // URL de votre page de connexion personnalisée
-            ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/svg/cart.svg" alt="Panier Reverie et petits plis">
-            <a href="<?php echo $custom_account_url; ?>" class="imgCart">Connexion</a>
+            <a href="<?php echo $my_account_url; ?>" class="imgCart">
+                <img src="<?php echo get_template_directory_uri(); ?>/svg/account.svg" alt="Panier Reverie et petits plis">
+                <p class="connectTxtSideBar">Mon Compte</p></a>
+        <?php } else {
+                $custom_account_url = home_url('/page-dinscription'); // URL de votre page de connexion personnalisée
+                ?>
+            <a href="<?php echo $custom_account_url; ?>" class="imgCart">
+                <img src="<?php echo get_template_directory_uri(); ?>/svg/account.svg" alt="Panier Reverie et petits plis">
+                <p class="connectTxtSideBar">Connexion</p>
+            </a>
         <?php } ?>
     </div>
 <?php
 }
+
+
+// Attribuer le rôle aux utilisateurs lors de leur inscription via WooCommerce
+function assign_woocommerce_customer_role($user_id)
+{
+    $user = new WP_User($user_id);
+    $user->add_role('woocommerce_customer');
+}
+add_action('woocommerce_created_customer', 'assign_woocommerce_customer_role');
 
 
 // REDIR when Client is Log
@@ -315,11 +302,10 @@ add_filter('login_redirect', 'custom_login_redirect', 10, 3);
 
 // REDIR when LogOut
 
-function custom_logout_redirect_logOut() {
+function custom_logout_redirect_logOut()
+{
     wp_redirect(home_url('/'));
     exit();
 }
 
 add_action('wp_logout', 'custom_logout_redirect_logOut');
-
-

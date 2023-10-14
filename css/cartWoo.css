@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 7vh;
+  top: 5vh;
   right: 0;
   width: 5vw;
   height: auto;
-  background-color: var(--couleur-3);
+  background-color: var(--couleur-3-05);
   border-left: 1.5px dashed var(--couleur-4);
   border-top: 1.5px dashed var(--couleur-4);
   border-bottom: 1.5px dashed var(--couleur-4);
@@ -17,7 +17,49 @@
   z-index: 500;
 }
 
-.custom-account{
+.custom-cart:hover {
+  background: var(--couleur-3);
+  color: var(--couleur-5);
+}
+
+.custom-cart:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.custom-cart:focus {
+  outline: none;
+}
+
+.custom-cart:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.custom-cart:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+}
+
+.custom-cart:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.custom-cart:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+    rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+}
+
+.custom-cart:disabled {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+
+
+.custom-account {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -25,7 +67,7 @@
   right: 0;
   width: 5vw;
   height: auto;
-  background-color: var(--couleur-3);
+  background-color: var(--couleur-3-05);
   border-left: 1.5px dashed var(--couleur-4);
   border-top: 1.5px dashed var(--couleur-4);
   border-bottom: 1.5px dashed var(--couleur-4);
@@ -33,10 +75,65 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
     rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   z-index: 500;
+
+}
+
+.custom-account:hover {
+  background: var(--couleur-3);
+  color: var(--couleur-5);
+
+}
+
+.custom-account:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.custom-account:focus {
+  outline: none;
+}
+
+.custom-account:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.custom-account:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+}
+
+.custom-account:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.custom-account:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+    rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+}
+
+.custom-account:disabled {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
 
 .imgCart img {
   padding: 1rem;
+}
+
+.connectTxtSideBar {
+  text-align: center;
+  font-family: Nunito Sans;
+  font-size: 0.8vw;
+  font-weight: 400;
+  color: var(--couleur-5);
+  margin: 0;
+  margin-bottom: 0.8em;
+  margin-top: -1em;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* -------------------------DESIGN CART ------------------------------- */
