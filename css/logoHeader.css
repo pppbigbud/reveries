@@ -1,0 +1,78 @@
+.containerHeader {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.containerHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../svg/arrierePlanHeaderReverie.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right top;
+  opacity: 0.5;
+}
+
+.containerLogo {
+  width: 15%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2vw;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    308deg,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  z-index: 500;
+}
+
+.containerLogo img {
+  width: 250px;
+  height: auto;
+  z-index: 500;
+}
+
+.containerCloud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  z-index: -1;
+}
+
+.containerCloud .cloudBackgroundHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../img/cloud.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.containerBackgroundLeft {
+  max-width: 20vw;
+  min-height: 20vh;
+  max-height: 30vh;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(1, 0, 46, 1) 100%
+  );
+  z-index: -1;
+  opacity: 0.3;
+}

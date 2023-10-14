@@ -1,0 +1,88 @@
+/* -------------------------SLIDER HOME---------------------------- */
+.slider-container {
+  width: 100vw;
+  height: 55vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin-top: -10vh;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper-slide img {
+  width: 20%;
+  height: auto;
+  padding-left: 15vw;
+}
+
+.textInsideSlider {
+  max-height: 35vh;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+  margin-left: 8vw;
+}
+
+.textInsideSlider p {
+  width: 30vw;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.imgContainerSliderHome {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* -------------------------SWIPER BULLET & ARROW----------------------- */
+
+.swiper-button-next,
+.swiper-button-prev {
+  margin: 5vw;
+  color: white;
+}
+
+.swiper-button-next {
+  right: 20px;
+  top: 40vh;
+}
+
+.swiper-button-prev {
+  left: 20px;
+  top: 40vh;
+}
+
+.swiper-pagination {
+  margin-bottom: 20vh;
+}
+
+.swiper-pagination-bullet {
+  background-color: var(--couleur-5);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--couleur-5);
+}
+
+/* Styles pour les flèches de navigation */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--couleur-5);
+  opacity: 0.2;
+}
