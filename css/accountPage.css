@@ -59,6 +59,34 @@
   padding: 1em 2em;
 }
 
+.subContainerChangePassword {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+}
+
+.info-bubble {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.input:hover + .info-bubble {
+  display: block;
+}
+
+.input:focus + .info-bubble {
+  display: block;
+}
+
 .titleModifyAccount {
   font-family: Nunito Sans;
   font-size: 2vw;

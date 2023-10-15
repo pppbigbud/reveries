@@ -3,8 +3,6 @@
  * Template Name: Page de Connexion
  * Template Post Type: page
  */
-?>
-<?php
 if (is_user_logged_in() && current_user_can('administrator')) {
     wp_redirect(admin_url());
     exit;
@@ -29,11 +27,9 @@ if (isset($_POST['register-submit'])) {
         exit;
     }
 }
-
 get_header();
 echo custom_cart_content();
 echo custom_account_link();
-
 ?>
 <div class="containerAccountSubscrit">
     <div class="containerLoginForm">
