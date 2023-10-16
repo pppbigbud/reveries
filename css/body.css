@@ -82,3 +82,72 @@ label {
   font-weight: 350;
   letter-spacing: 0.5;
 }
+
+#message-container {
+  display: none;
+  width: 20vw;
+  height: auto;
+  position: fixed;
+  top: 3vh;
+  right: 8vw;
+  padding: 0.5em;
+  border-radius: 5px;
+  z-index: 1000;
+  background-color: var(--couleur-1);
+  border-radius: 0.5em;
+  border: 1.5px dashed var(--couleur-3);
+  text-align: center;
+  font-family: Nunito Sans;
+  font-size: 0.9vw;
+  font-weight: 300;
+  letter-spacing: 0.3;
+  color: var(--couleur-5);
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+}
+
+#message-container-valid {
+  display: none;
+  width: 20vw;
+  height: auto;
+  position: fixed;
+  top: 3vh;
+  right: 8vw;
+  padding: 0.5em;
+  border-radius: 5px;
+  z-index: 1000;
+  background-color: var(--couleur-1);
+  border-radius: 0.5em;
+  border: 1.5px dashed var(--couleur-3);
+  text-align: center;
+  font-family: Nunito Sans;
+  font-size: 0.9vw;
+  font-weight: 300;
+  letter-spacing: 0.3;
+  color: var(--couleur-5);
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+}
+
+.error-message {
+  display: none;
+  height: auto;
+  width: 20vw;
+  position: fixed;
+  top: 3vh;
+  right: 8vw;
+  padding: 0.5em;
+  border-radius: 5px;
+  z-index: 1000;
+  background-color: var(--couleur-1);
+  border: 1.5px dashed var(--couleur-3);
+  text-align: center;
+  font-family: Nunito Sans;
+  font-size: 0.9vw;
+  font-weight: 300;
+  letter-spacing: 0.3;
+  color: var(--couleur-5);
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+}
+

@@ -26,12 +26,17 @@ function load_scripts_and_styles_conditionally()
     wp_enqueue_style('navCloudSvg', get_template_directory_uri() . '/css/navCloudSvg.css', array(), '1.0', 'all');
     wp_enqueue_style('footer', get_template_directory_uri() . '/css/footer.css', array(), '1.0', 'all');
     wp_enqueue_style('cartWoo', get_template_directory_uri() . '/css/cartWoo.css', array(), '1.0', 'all');
+    wp_enqueue_style('boutiquePageWoo', get_template_directory_uri() . '/css/boutiquePageWoo.css', array(), '1.0', 'all');
+    wp_enqueue_style('productPage', get_template_directory_uri() . '/css/productPage.css', array(), '1.0', 'all');
 
     wp_enqueue_script('swiperJS', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array('animeJS'), '10.3.1', true);
     wp_enqueue_script('animeJS', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array(), '3.2.1', true);
     wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1.0', true);
     wp_enqueue_script('animeCloudJS', get_template_directory_uri() . '/js/animeClouds.js', array(), '1.0', true);
-
+    wp_enqueue_script('messagePopUp', get_template_directory_uri() . '/js/messagePopUp.js', array(), '1.0', true);
+    wp_enqueue_script('ligthBoxProduct', get_template_directory_uri() . '/js/ligthBoxProduct.js', array(), '1.0', true);
+    wp_enqueue_script('password-validation', get_template_directory_uri() . '/js/password-validation.js', array(), '1.0', true);
+    
 
     if (is_front_page()) {
         wp_enqueue_style('swiperCSS', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), '10.3.1');
@@ -41,6 +46,7 @@ function load_scripts_and_styles_conditionally()
         wp_enqueue_style('frontPageBoutique', get_template_directory_uri() . '/css/frontPageBoutique.css', array(), '1.0', 'all');
         wp_enqueue_style('frontPageActu', get_template_directory_uri() . '/css/frontPageActu.css', array(), '1.0', 'all');
         wp_enqueue_style('filterAjax', get_template_directory_uri() . '/css/filterAjax.css', array(), '1.0', 'all');
+        wp_enqueue_style('cardsNews', get_template_directory_uri() . '/css/cardsNews.css', array(), '1.0', 'all');
 
         wp_enqueue_script('ajaxFilter4derniers', get_template_directory_uri() . '/js/ajaxFilter4derniers.js', array('jquery'), '1.0', true);
         wp_localize_script('ajaxFilter4derniers', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
@@ -59,19 +65,22 @@ function load_scripts_and_styles_conditionally()
         wp_localize_script('ajax-filter', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
     }
 
-    if (is_page('boutique')) {
-        wp_enqueue_style('productPage', get_template_directory_uri() . '/css/productPage.css', array(), '1.0', 'all');
-        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
-        wp_enqueue_style('boutiquePageWoo', get_template_directory_uri() . '/css/boutiquePageWoo.css', array(), '1.0', 'all');
-        wp_enqueue_style('cardsNews', get_template_directory_uri() . '/css/cardsNews.css', array(), '1.0', 'all');
-    }
-
     if (is_page('panier')) {
         wp_enqueue_style('cartCheckOut', get_template_directory_uri() . '/css/cartCheckOut.css', array(), '1.0', 'all');
         wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
     }
 
+    if (is_page('commander')) {
+        wp_enqueue_style('cartCheckOut', get_template_directory_uri() . '/css/cartCheckOut.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+    }
+
     if (is_page('page-dinscription')) {
+        wp_enqueue_style('accountPage', get_template_directory_uri() . '/css/accountPage.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+    }
+
+    if (is_page('mon-compte')) {
         wp_enqueue_style('accountPage', get_template_directory_uri() . '/css/accountPage.css', array(), '1.0', 'all');
         wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
     }
@@ -167,32 +176,8 @@ function add_ajax_object_4()
 }
 add_action('wp_enqueue_scripts', 'add_ajax_object_4');
 
+// ---------------------------------------CUSTOM CART pour woo-commerce------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// CUSTOM CART pour woo-commerce
 function custom_cart_content()
 {
     $cart_count = WC()->cart->get_cart_contents_count(); ?>
@@ -211,7 +196,7 @@ function custom_cart_content()
 <?php
 }
 
-// CUSTOM CLIENT ACCOUNT pour woo-commerce
+// ---------------------------------------CUSTOM CLIENT ACCOUNT pour woo-commerce------------------------------------------------
 
 function custom_account_link()
 {
@@ -358,5 +343,39 @@ if ($order_count > 0) {
     // Vous pouvez décommenter la ligne ci-dessous si vous souhaitez également afficher l'État (state).
     // echo '<span for="billing_company">Nom de l\'entreprise : ' . esc_attr($billing_state) . '</span>';
     echo '<span for="billing_company">Code postal : ' . esc_attr($billing_postcode) . '</span>';
+}
+?>
+
+
+<!-- ---------------------------------------------VERIFICATION COMPLEXITE MOT DE PASSE---------------------------------- -->
+
+<?php
+function check_password_complexity($new_password, $confirm_password)
+{
+    if (isset($_POST['change_password'])) {
+        $new_password = $_POST['new_password'];
+        $confirm_password = $_POST['confirm_password'];
+
+        // Vérifier si les mots de passe correspondent
+        if ($new_password !== $confirm_password) {
+            echo "Les mots de passe ne correspondent pas. Veuillez les saisir à nouveau.";
+        } else {
+            // Vérifier les règles de complexité du mot de passe
+            if (strlen($new_password) < 8) {
+                echo "Le mot de passe doit contenir au moins 8 caractères.";
+            } elseif (!preg_match('/[A-Z]/', $new_password)) {
+                echo "Le mot de passe doit contenir au moins une lettre majuscule.";
+            } elseif (!preg_match('/[a-z]/', $new_password)) {
+                echo "Le mot de passe doit contenir au moins une lettre minuscule.";
+            } elseif (!preg_match('/\d/', $new_password)) {
+                echo "Le mot de passe doit contenir au moins un chiffre.";
+            } else {
+                // Mot de passe valide, procédez à la modification du mot de passe
+                // Ajoutez votre logique de mise à jour de mot de passe ici
+
+                echo "C'est ok, votre mot de passe est modifié.";
+            }
+        }
+    }
 }
 ?>

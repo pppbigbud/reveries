@@ -35,6 +35,7 @@ do_action('woocommerce_before_account_dashboard'); ?>
 <div class="superContainerInfoAccount">
 
     <div class="containerFormMetaChange">
+
         <h2 class="titleModifyAccount">Mettre à jour votre profil</h2>
         <form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>">
             <label for="last_name">Nom :</label>
@@ -48,18 +49,26 @@ do_action('woocommerce_before_account_dashboard'); ?>
             <input type="submit" name="update_profile" class="submitBtnNewAccount" value="Mettre à jour le profil">
         </form>
 
+
+
         <div class="subContainerChangePassword">
             <h2 class="titleModifyAccount">Changer de Mot de passe</h2>
-            <form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>">
+            <form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" id="myFormPasswordChange">
                 <label for="new_password">Nouveau mot de passe :</label>
                 <input type="password" name="new_password" id="new_password" class="input">
+                <div class="error-message" id="new-password-error"></div>
 
                 <label for="confirm_password">Confirmer le mot de passe :</label>
                 <input type="password" name="confirm_password" id="confirm_password" class="input">
+                <div class="error-message" id="confirm-password-error"></div>
 
                 <input type="submit" name="change_password" class="submitBtnNewAccount" value="Changer le mot de passe">
             </form>
+            <div id="message-container" class="message-container"></div>
+            <div id="message-container-valid" class="message-container-valid"></div>
         </div>
+
+
 
     </div>
 
