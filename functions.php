@@ -43,7 +43,7 @@ function load_scripts_and_styles_conditionally()
         wp_enqueue_style('filterAjax', get_template_directory_uri() . '/css/filterAjax.css', array(), '1.0', 'all');
 
         wp_enqueue_script('ajaxFilter4derniers', get_template_directory_uri() . '/js/ajaxFilter4derniers.js', array('jquery'), '1.0', true);
-        wp_localize_script('ajax-filter', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
+        wp_localize_script('ajaxFilter4derniers', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
     }
 
     if (is_single()) {
@@ -80,7 +80,8 @@ add_action('wp_enqueue_scripts', 'load_scripts_and_styles_conditionally');
 
 // ---------------------------------------AJAX filtres TOUS les articles------------------------------------------------
 
-function filter_articles_page() {
+function filter_articles_page()
+{
     $selected_category = isset($_POST['category']) ? intval($_POST['category']) : 0;
 
     $args = array(
@@ -114,7 +115,8 @@ function filter_articles_page() {
 add_action('wp_ajax_filter_articles_page', 'filter_articles_page');
 add_action('wp_ajax_nopriv_filter_articles_page', 'filter_articles_page');
 
-function add_ajax_object_all() {
+function add_ajax_object_all()
+{
     wp_localize_script('ajaxFilterAllArticles', 'ajax_object', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
     ));
@@ -123,11 +125,18 @@ add_action('wp_enqueue_scripts', 'add_ajax_object_all');
 
 // ---------------------------------------AJAX 4 derniers articles------------------------------------------------
 
-function filter_latest_articles() {
+function filter_latest_articles()
+{
     $args = array(
         'post_type' => 'post',
-        'posts_per_page' => 4,  // Limitez le nombre d'articles à 4 pour la page d'accueil
+        'posts_per_page' => 4,
     );
+
+    // Ajoutez un paramètre pour spécifier la catégorie
+    $selected_category = isset($_POST['category']) ? intval($_POST['category']) : 0;
+    if ($selected_category !== 0) {
+        $args['category__in'] = array($selected_category);
+    }
 
     $query = new WP_Query($args);
 
@@ -150,12 +159,15 @@ function filter_latest_articles() {
 add_action('wp_ajax_filter_latest_articles', 'filter_latest_articles');
 add_action('wp_ajax_nopriv_filter_latest_articles', 'filter_latest_articles');
 
-function add_ajax_object_4() {
-    wp_localize_script('ajaxFilter4derniers', 'ajax_object', array(
+function add_ajax_object_4()
+{
+    wp_localize_script('ajaxFilter4derniers', 'ajax_object_4', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
     ));
 }
 add_action('wp_enqueue_scripts', 'add_ajax_object_4');
+
+
 
 
 

@@ -63,11 +63,11 @@
 <div class="containerSideBarArticles">
     <div class="containerSideBarArticlesAlignement">
         <label for="category-select">Filtrer par catégorie :</label>
-        <a href="#" data-category-articles="0" class="category-link-articles slide-news">Toutes les catégories</a>
+        <a href="#" data-category-articles="0" class="category-link-4articles slide-news">Toutes les catégories</a>
         <?php
         $categories = get_categories();
         foreach ($categories as $category) {
-            echo '<a href="#" data-category-articles="' . $category->term_id . '" class="category-link-articles slide-news">' . $category->name . '</a>';
+            echo '<a href="#" data-category-4articles="' . $category->term_id . '" class="category-link-4articles slide-news">' . $category->name . '</a>';
         }
         ?>
     </div>
