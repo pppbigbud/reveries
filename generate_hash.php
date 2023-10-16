@@ -1,5 +1,5 @@
 <?php
-$new_password = '1234'; // Remplacez 'votre_nouveau_mot_de_passe' par le mot de passe que vous souhaitez utiliser.
+$new_password = 'Ntgr6a8n$'; // Remplacez 'votre_nouveau_mot_de_passe' par le mot de passe que vous souhaitez utiliser.
 
 // Générer un hachage MD5 pour le nouveau mot de passe
 $hashed_password = md5($new_password);

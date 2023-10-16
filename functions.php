@@ -33,10 +33,8 @@ function load_scripts_and_styles_conditionally()
     wp_enqueue_script('animeJS', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array(), '3.2.1', true);
     wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1.0', true);
     wp_enqueue_script('animeCloudJS', get_template_directory_uri() . '/js/animeClouds.js', array(), '1.0', true);
-    wp_enqueue_script('messagePopUp', get_template_directory_uri() . '/js/messagePopUp.js', array(), '1.0', true);
     wp_enqueue_script('ligthBoxProduct', get_template_directory_uri() . '/js/ligthBoxProduct.js', array(), '1.0', true);
-    wp_enqueue_script('password-validation', get_template_directory_uri() . '/js/password-validation.js', array(), '1.0', true);
-    
+
 
     if (is_front_page()) {
         wp_enqueue_style('swiperCSS', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), '10.3.1');
@@ -57,9 +55,10 @@ function load_scripts_and_styles_conditionally()
         wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
     }
 
-    if (is_page('articles')) {
+    if (is_page('actualites')) {
         wp_enqueue_style('articlesPage', get_template_directory_uri() . '/css/articlesPage.css', array(), '1.0', 'all');
         wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+        wp_enqueue_style('cardsNews', get_template_directory_uri() . '/css/cardsNews.css', array(), '1.0', 'all');
 
         wp_enqueue_script('ajaxFilterAllArticles', get_template_directory_uri() . '/js/ajaxFilterAllArticles.js', array('jquery'), '1.0', true);
         wp_localize_script('ajax-filter', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
@@ -78,11 +77,18 @@ function load_scripts_and_styles_conditionally()
     if (is_page('page-dinscription')) {
         wp_enqueue_style('accountPage', get_template_directory_uri() . '/css/accountPage.css', array(), '1.0', 'all');
         wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+
+        wp_enqueue_script('messagePopUp', get_template_directory_uri() . '/js/messagePopUp.js', array(), '1.0', true);
+        wp_enqueue_script('password-validation', get_template_directory_uri() . '/js/password-validation.js', array(), '1.0', true);
     }
 
     if (is_page('mon-compte')) {
         wp_enqueue_style('accountPage', get_template_directory_uri() . '/css/accountPage.css', array(), '1.0', 'all');
         wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+
+        wp_enqueue_script('messagePopUp', get_template_directory_uri() . '/js/messagePopUp.js', array(), '1.0', true);
+        wp_enqueue_script('password-validation', get_template_directory_uri() . '/js/password-validation.js', array(), '1.0', true);
+        wp_enqueue_script('selecteurCmd', get_template_directory_uri() . '/js/selecteurCmd.js', array(), '1.0', true);
     }
 }
 add_action('wp_enqueue_scripts', 'load_scripts_and_styles_conditionally');
@@ -344,12 +350,11 @@ if ($order_count > 0) {
     // echo '<span for="billing_company">Nom de l\'entreprise : ' . esc_attr($billing_state) . '</span>';
     echo '<span for="billing_company">Code postal : ' . esc_attr($billing_postcode) . '</span>';
 }
-?>
 
 
-<!-- ---------------------------------------------VERIFICATION COMPLEXITE MOT DE PASSE---------------------------------- -->
+// <!-- --------------------------------------------TA MERE-VERIFICATION COMPLEXITE MOT DE PASSE---------------------------------- -->
 
-<?php
+
 function check_password_complexity($new_password, $confirm_password)
 {
     if (isset($_POST['change_password'])) {

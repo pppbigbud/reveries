@@ -53,7 +53,7 @@ do_action('woocommerce_before_account_dashboard'); ?>
 
         <div class="subContainerChangePassword">
             <h2 class="titleModifyAccount">Changer de Mot de passe</h2>
-            <form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" id="myFormPasswordChange">
+            <form method="post" name="register" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" id="myFormPasswordChange">
                 <label for="new_password">Nouveau mot de passe :</label>
                 <input type="password" name="new_password" id="new_password" class="input">
                 <div class="error-message" id="new-password-error"></div>
@@ -67,8 +67,51 @@ do_action('woocommerce_before_account_dashboard'); ?>
             <div id="message-container" class="message-container"></div>
             <div id="message-container-valid" class="message-container-valid"></div>
         </div>
+    </div>
 
+    <div class="containerCmdAccount">
+        <div class="subContainerAccountCmd">
+            <h2 class="titleModifyAccount">Anciennes Commandes</h2>
+            <div class="anciennes-commandes">
+                <?php
+                // Simulation de commandes fictives (remplacez ces données par des données réelles lorsque vous en avez)
+                $fake_orders = array(
+                    array(
+                        'order_id' => '001',
+                        'order_date' => '2023-01-15',
+                        'order_items' => array(
+                            'Produit A' => 2,
+                            'Produit B' => 1,
+                        ),
+                        'order_total' => '150.00',
+                    ),
+                    array(
+                        'order_id' => '002',
+                        'order_date' => '2023-02-20',
+                        'order_items' => array(
+                            'Produit C' => 3,
+                        ),
+                        'order_total' => '75.00',
+                    ),
+                );
+                ?>
+                <select id="orderDropdown" class="infoCmdAccount">
+                    <option value="">Sélectionnez une commande</option>
+                    <?php
+                    foreach ($fake_orders as $order) {
+                        echo '<option value="' . $order['order_id'] . '">' . 'Commande n° ' . $order['order_id'] . '</option>';
+                    }
+                    ?>
+                </select>
 
+                <div id="selectedOrderDetails" class="selected-order-details"></div>
+
+                <script type="text/javascript">
+                    var fake_orders = <?php echo json_encode($fake_orders); ?>;
+                </script>
+
+            </div>
+        </div>
 
     </div>
 

@@ -59,6 +59,47 @@
   padding: 1em 2em;
 }
 
+.containerCmdAccount {
+  width: 50vw;
+  height: auto;
+}
+
+.subContainerAccountCmd .anciennes-commandes {
+  width: 50%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--couleur-0);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  border: 1.5px dashed var(--couleur-3);
+  padding: 1em 2em;
+}
+
+.anciennes-commandes .infoCmdAccount {
+  width: 80%;
+  height: auto;
+}
+
+.anciennes-commandes .infoCmdAccount {
+  font-family: Nunito Sans;
+  font-size: 1vw;
+  font-weight: 300;
+  letter-spacing: 0.5;
+  border: 1.5px dashed var(--couleur-3);
+  padding: 5px;
+}
+
+.anciennes-commandes .infoCmdAccount option {
+  font-family: Nunito Sans;
+  font-size: 1vw;
+  font-weight: 300;
+  letter-spacing: 0.5;
+}
+
 .subContainerChangePassword {
   width: 100%;
   height: auto;
@@ -67,6 +108,15 @@
   justify-content: center;
   align-items: center;
   margin-top: 5vh;
+}
+
+.subContainerAccountCmd {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .info-bubble {
@@ -192,7 +242,7 @@
   width: 80%;
   height: 1vh;
   border: 1.5px dashed var(--couleur-3);
-  color: var(--couleur-2);
+  /* color: var(--couleur-2); */
   font-family: Nunito Sans;
   font-size: 0.8vw;
   font-weight: 300;
@@ -205,7 +255,7 @@
   width: 80%;
   height: 1vh;
   border: 1.5px dashed var(--couleur-3);
-  color: var(--couleur-2);
+  color: var(--couleur-5);
   font-family: Nunito Sans;
   font-size: 0.8vw;
   font-weight: 300;
@@ -368,4 +418,14 @@
 .submitBtnNewAccount:disabled {
   box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
     rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+/* ----------------------------------------SELECTEUR CMD-------------------------------------------- */
+
+.selected-order-details {
+  width: 76%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }

@@ -27,7 +27,7 @@
           <span><a href="http://localhost/wordpress/">ACCUEIL</a></span>
         </li>
         <li class="cloud2">
-          <span><a href="http://localhost/wordpress/articles/">ACTUALITE</a></span>
+          <span><a href="http://localhost/wordpress/actualites/">ACTUALITE</a></span>
         </li>
         <li class="cloud">
           <span><a href="http://localhost/wordpress/boutique/">BOUTIQUE</a></span>

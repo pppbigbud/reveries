@@ -9,9 +9,9 @@
 
 .containerImgSingleArticle {
   max-width: 50vw;
-  height: auto;
+  height: 50vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 

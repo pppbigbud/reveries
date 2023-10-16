@@ -1,8 +1,13 @@
 <?php
 /*
- * Template Name: Page de Connexion
- * Template Post Type: page
- */
+
+  Template Name: Page de connexion
+
+  Template Name: Full-width
+
+  Template Post Type: post, page, product
+
+*/
 if (is_user_logged_in() && current_user_can('administrator')) {
     wp_redirect(admin_url());
     exit;

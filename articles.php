@@ -34,13 +34,20 @@
             <main id="main" class="site-main" role="main">
 
                 <?php
-                if (have_posts()) :
-                    while (have_posts()) :
-                        the_post();
+                $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 6, // Récupère les 6 derniers articles
+                    'order' => 'DESC', // Trie en ordre décroissant (les plus récents en premier)
+                );
 
+                $query = new WP_Query($args);
+
+                if ($query->have_posts()) :
+                    while ($query->have_posts()) :
+                        $query->the_post();
                         get_template_part('content', 'article');
-
                     endwhile;
+                    wp_reset_postdata();
                 else :
                     get_template_part('content', 'none');
                 endif;
