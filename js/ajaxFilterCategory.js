@@ -1,65 +1,44 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var categoryLinks = document.querySelectorAll(".category-link");
+function filterContent(selector, actionName, dataKey) {
+  var categoryLinks = document.querySelectorAll(selector);
 
   categoryLinks.forEach(function (link) {
-    link.addEventListener("click", function (event) {
+    link.addEventListener("click", async function (event) {
       event.preventDefault();
 
-      var selectedCategory = link.getAttribute("data-category");
+      var selectedCategory = link.getAttribute(dataKey);
 
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", ajax_object.ajaxurl, true);
-      xhr.setRequestHeader(
-        "Content-Type",
-        "application/x-www-form-urlencoded; charset=UTF-8"
-      );
+      try {
+        const response = await fetch(ajax_object.ajaxurl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          },
+          body: new URLSearchParams({
+            action: actionName,
+            category: selectedCategory,
+          }),
+        });
 
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          var response = xhr.responseText;
-          var wrapperNews = document.querySelector(".wrapper-news");
-          wrapperNews.innerHTML = response;
-          console.log("Réponse AJAX reçue : " + response);
-          console.log("Mise à jour du DOM effectuée.");
-        }
-      };
-
-      var data = "action=filter_articles&category=" + selectedCategory;
-      xhr.send(data);
-    });
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  var categoryLinks = document.querySelectorAll(".category-link-articles");
-
-  categoryLinks.forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      var selectedCategory = link.getAttribute("data-category-articles");
-
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", ajax_object.ajaxurl, true);
-      xhr.setRequestHeader(
-        "Content-Type",
-        "application/x-www-form-urlencoded; charset=UTF-8"
-      );
-
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          var response = xhr.responseText;
+        if (response.ok) {
+          const responseData = await response.text();
           var wrapperNews = document.querySelector(".wrapper-news-articles");
-          wrapperNews.innerHTML = response;
-          console.log("Réponse AJAX reçue : " + response);
+          wrapperNews.innerHTML = responseData;
+          console.log(ajax_object.ajaxurl);
+          console.log("Réponse AJAX reçue : " + responseData);
           console.log("Mise à jour du DOM effectuée.");
+        } else {
+          console.error("Erreur lors de la requête AJAX");
         }
-      };
-
-      var data = "action=filter_articles_page&category=" + selectedCategory;
-      xhr.send(data);
+      } catch (error) {
+        console.error("Une erreur s'est produite : " + error);
+      }
     });
   });
-});
+}
 
-
+// Filtrer les articles
+filterContent(
+  ".category-link-articles",
+  "filter_articles_page",
+  "data-category-articles"
+);

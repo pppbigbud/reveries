@@ -1,4 +1,7 @@
 <?php
+add_theme_support('page-templates');
+add_theme_support('post-thumbnails');
+add_theme_support('title-tag');
 
 function load_jquery()
 {
@@ -6,225 +9,111 @@ function load_jquery()
 }
 add_action('wp_enqueue_scripts', 'load_jquery');
 
-
-// Ajouter la prise en charge des pages templates
-add_theme_support('page-templates');
-
-add_action('after_setup_theme', 'theme_add_woocommerce_support');
 function theme_add_woocommerce_support()
 {
     add_theme_support('woocommerce');
 }
-
-// Ajouter la prise en charge des images mises en avant
-add_theme_support('post-thumbnails');
+add_action('after_setup_theme', 'theme_add_woocommerce_support');
 
 
-// Ajouter automatiquement le titre du site dans l'en-tête du site
-add_theme_support('title-tag');
-
-
-//Ajouter CSS au Header
+//Ajouter CSS et JS au Header
 function ajouter_CSS_Header()
 {
-    wp_enqueue_style('swiperCSS', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), '6.8.0');
     wp_enqueue_style('body', get_template_directory_uri() . '/css/body.css', array(), '1.0', 'all');
-    wp_enqueue_style('logoHeader', get_template_directory_uri() . '/css/logoHeader.css', array(), '1.0', 'all');
-    wp_enqueue_style('footer', get_template_directory_uri() . '/css/footer.css', array(), '1.0', 'all');
+    wp_enqueue_style('header', get_template_directory_uri() . '/css/header.css', array(), '1.0', 'all');
     wp_enqueue_style('navCloudSvg', get_template_directory_uri() . '/css/navCloudSvg.css', array(), '1.0', 'all');
-    wp_enqueue_style('productPage', get_template_directory_uri() . '/css/productPage.css', array(), '1.0', 'all');
-    wp_enqueue_style('articlesPage', get_template_directory_uri() . '/css/articlesPage.css', array(), '1.0', 'all');
-    wp_enqueue_style('articlesSingle', get_template_directory_uri() . '/css/articlesSingle.css', array(), '1.0', 'all');
-    wp_enqueue_style('cartWoo', get_template_directory_uri() . '/css/boutiquePageWoo.css', array(), '1.0', 'all');
-    wp_enqueue_style('accountPage', get_template_directory_uri() . '/css/accountPage.css', array(), '1.0', 'all');
-    wp_enqueue_style('boutiquePageWoo', get_template_directory_uri() . '/css/cartWoo.css', array(), '1.0', 'all');
-    wp_enqueue_style('cartCheckOut', get_template_directory_uri() . '/css/cartCheckOut.css', array(), '1.0', 'all');
-    wp_enqueue_style('slider', get_template_directory_uri() . '/css/slider.css', array(), '1.0', 'all');
-    wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
-    wp_enqueue_style('frontPageActu', get_template_directory_uri() . '/css/frontPageActu.css', array(), '1.0', 'all');
-    wp_enqueue_style('cardsNews', get_template_directory_uri() . '/css/cardsNews.css', array(), '1.0', 'all');
-    wp_enqueue_style('filterAjax', get_template_directory_uri() . '/css/filterAjax.css', array(), '1.0', 'all');
-    wp_enqueue_style('frontPagePresentation', get_template_directory_uri() . '/css/frontPagePresentation.css', array(), '1.0', 'all');
-    wp_enqueue_style('frontPageBoutique', get_template_directory_uri() . '/css/frontPageBoutique.css', array(), '1.0', 'all');
+    wp_enqueue_style('footer', get_template_directory_uri() . '/css/footer.css', array(), '1.0', 'all');
+    wp_enqueue_style('cartWoo', get_template_directory_uri() . '/css/cartWoo.css', array(), '1.0', 'all');
+    
+    wp_enqueue_script('swiperJS', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array('animeJS'), '10.3.1', true);
+    wp_enqueue_script('animeJS', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array(), '3.2.1', true);
+    wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1.0', true);
+    wp_enqueue_script('animeCloudJS', get_template_directory_uri() . '/js/animeClouds.js', array(), '1.0', true);
+
 }
 add_action('wp_enqueue_scripts', 'ajouter_CSS_Header');
 
-// Ajout des CDN au head
-function charger_cdn_scripts()
+function load_scripts_and_styles_conditionally()
 {
-    wp_enqueue_script('mini-lightbox', '/node_modules/mini-lightbox/dist/mini-lightbox.min.js', array('jquery'), '1.0.0', true);
-    wp_enqueue_script('animeJS', 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js', array(), '3.2.1', true);
-    wp_enqueue_script('swiperJS', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', array('animeJS'), '10.3.1', true);
-}
-add_action('wp_enqueue_scripts', 'charger_cdn_scripts');
+    $current_page = get_post();
 
-
-// Ajout Script Perso
-
-// CLOUD
-
-function charger_scripts_personnalises_cloud()
-{
-    wp_enqueue_script('animeCloudJS', get_template_directory_uri() . '/js/animeClouds.js', array(), '1.0', true);
-}
-add_action('wp_enqueue_scripts', 'charger_scripts_personnalises_cloud');
-
-// SWIPER
-
-function charger_scripts_personnalises_swiper()
-{
-    wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1.0', true);
-}
-add_action('wp_enqueue_scripts', 'charger_scripts_personnalises_swiper');
-
-// LIGHT-BOX PRODUCT
-
-function charger_scripts_personnalises_light_box_product()
-{
-    wp_enqueue_script('ligthBoxProduct', get_template_directory_uri() . '/js/ligthBoxProduct.js', array(), '1.0', true);
-}
-add_action('wp_enqueue_scripts', 'charger_scripts_personnalises_light_box_product');
-
-
-// AJAX pour les catégories d'articles
-
-function charger_scripts_personnalises_ajax_category()
-{
-    wp_enqueue_script('ajaxCategory', get_template_directory_uri() . '/js/ajaxFilterCategory.js', array(), '1.0', true);
-}
-add_action('wp_enqueue_scripts', 'charger_scripts_personnalises_ajax_category');
-
-function localize_ajaxurl()
-{
-    wp_localize_script('ajaxCategory', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
-}
-add_action('wp_enqueue_scripts', 'localize_ajaxurl');
-
-
-
-// FILTRE AJAX pour les catégories d'articles page d'accueil
-
-function filter_articles()
-{
-    // Message de débogage : Fonction filter_articles appelée
-    error_log('Fonction filter_articles appelée.');
-
-    $selectedCategory = $_POST['category'];
-
-    // Message de débogage : Catégorie sélectionnée
-    error_log('Catégorie sélectionnée : ' . $selectedCategory);
-
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => 4,
-    );
-
-    if ($selectedCategory != 0) {
-        $args['cat'] = $selectedCategory;
+    if (is_front_page()) {
+        wp_enqueue_style('swiperCSS', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), '10.3.1');
+        wp_enqueue_style('slider', get_template_directory_uri() . '/css/slider.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+        wp_enqueue_style('frontPagePresentation', get_template_directory_uri() . '/css/frontPagePresentation.css', array(), '1.0', 'all');
+        wp_enqueue_style('frontPageBoutique', get_template_directory_uri() . '/css/frontPageBoutique.css', array(), '1.0', 'all');
+        wp_enqueue_style('frontPageActu', get_template_directory_uri() . '/css/frontPageActu.css', array(), '1.0', 'all');
+        wp_enqueue_style('filterAjax', get_template_directory_uri() . '/css/filterAjax.css', array(), '1.0', 'all');
     }
 
-    $query = new WP_Query($args);
+    if (is_single()) {
+        wp_enqueue_style('articlesSingle', get_template_directory_uri() . '/css/articlesSingle.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+    }
 
-    if ($query->have_posts()) :
-        while ($query->have_posts()) : $query->the_post();
-            // Début de la mise en page de l'article
-            echo '<div class="slider-news-home">';
+    if (is_page('articles')) {
+        wp_enqueue_style('articlesPage', get_template_directory_uri() . '/css/articlesPage.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+        
+        wp_enqueue_script('ajax-filter', get_template_directory_uri() . '/js/ajaxFilterCategory.js', array('jquery'), '1.0', true);
+        wp_localize_script('ajax-filter', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
+    }
 
-            // Lien vers l'article
-            echo '<a href="' . get_the_permalink() . '">';
+    if (is_page('boutique')) {
+        wp_enqueue_style('productPage', get_template_directory_uri() . '/css/productPage.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+        wp_enqueue_style('boutiquePageWoo', get_template_directory_uri() . '/css/boutiquePageWoo.css', array(), '1.0', 'all');
+        wp_enqueue_style('cardsNews', get_template_directory_uri() . '/css/cardsNews.css', array(), '1.0', 'all');
+    }
 
-            // Image à la une de l'article
-            if (has_post_thumbnail()) {
-                echo '<div class="featured-image">';
-                the_post_thumbnail('thumbnail');
-                echo '</div>';
-            }
+    if (is_page('panier')) {
+        wp_enqueue_style('cartCheckOut', get_template_directory_uri() . '/css/cartCheckOut.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+    }
 
-            // Titre de l'article
-            echo '<h2>' . get_the_title() . '</h2>';
-
-            // Extrait de l'article
-            the_excerpt();
-
-            // Fin de la mise en page de l'article
-            echo '</a>'; // Fermeture du lien
-            echo '</div>'; // Fermeture de la div .slide-news
-
-            // Message de débogage : Affichage de l'article
-            error_log('Affichage de l\'article : ' . get_the_title()); // Exemple avec le titre de l'article
-
-        endwhile;
-        wp_reset_postdata();
-    endif;
-
-    // Message de débogage : Fin de la fonction filter_articles
-    error_log('Fin de la fonction filter_articles.');
-
-    die(); // Important pour terminer la requête AJAX correctement
+    if (is_page('page-dinscription')) {
+        wp_enqueue_style('accountPage', get_template_directory_uri() . '/css/accountPage.css', array(), '1.0', 'all');
+        wp_enqueue_style('separateurHome', get_template_directory_uri() . '/css/separateurHome.css', array(), '1.0', 'all');
+    }
 }
-
-add_action('wp_ajax_filter_articles', 'filter_articles');
-add_action('wp_ajax_nopriv_filter_articles', 'filter_articles');
-
+add_action('wp_enqueue_scripts', 'load_scripts_and_styles_conditionally');
 
 // FILTRE AJAX pour les catégories d'articles
 
+// Fonction pour filtrer les articles de la page
 function filter_articles_page()
 {
-    // Message de débogage : Fonction filter_articles appelée
-    error_log('Fonction filter_articles_page appelée.');
-
-    $selectedCategory2 = $_POST['category'];
-
-    // Message de débogage : Catégorie sélectionnée
-    error_log('Catégorie sélectionnée : ' . $selectedCategory2);
+    $selected_category = isset($_POST['category']) ? intval($_POST['category']) : 0;
 
     $args = array(
         'post_type' => 'post',
     );
 
-    if ($selectedCategory2 != 0) {
-        $args['cat'] = $selectedCategory2;
+    if ($selected_category !== 0) {
+        $args['category__in'] = array($selected_category);
     }
 
     $query = new WP_Query($args);
 
     if ($query->have_posts()) :
+        ob_start(); // Commence à stocker la sortie tampon
+
         while ($query->have_posts()) : $query->the_post();
-            // Début de la mise en page de l'article
-            echo '<div class="slide-news">';
-
-            // Lien vers l'article
-            echo '<a href="' . get_the_permalink() . '">';
-
-            // Image à la une de l'article
-            if (has_post_thumbnail()) {
-                echo '<div class="featured-image">';
-                the_post_thumbnail('thumbnail');
-                echo '</div>';
-            }
-
-            // Titre de l'article
-            echo '<h2>' . get_the_title() . '</h2>';
-
-            // Extrait de l'article
-            the_excerpt();
-
-            // Fin de la mise en page de l'article
-            echo '</a>'; // Fermeture du lien
-            echo '</div>'; // Fermeture de la div .slide-news
-
-            // Message de débogage : Affichage de l'article
-            error_log('Affichage de l\'article : ' . get_the_title()); // Exemple avec le titre de l'article
-
+            // Affiche le contenu de l'article de la page en utilisant le modèle 'content-article.php'
+            get_template_part('templates/content', 'article'); // Assurez-vous que le modèle 'content-article.php' existe et est correctement nommé
         endwhile;
+
         wp_reset_postdata();
+
+        $response = ob_get_clean(); // Récupère la sortie tampon
+
+        echo $response;
+    else :
+        echo 'Aucun article trouvé.';
     endif;
 
-    // Message de débogage : Fin de la fonction filter_articles
-    error_log('Fin de la fonction filter_articles_page.');
-
-    die(); // Important pour terminer la requête AJAX correctement
+    wp_die(); // Termine le script WordPress
 }
 
 add_action('wp_ajax_filter_articles_page', 'filter_articles_page');
@@ -232,10 +121,29 @@ add_action('wp_ajax_nopriv_filter_articles_page', 'filter_articles_page');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // CUSTOM CART pour woo-commerce
 function custom_cart_content()
 {
-    // ob_start();
     $cart_count = WC()->cart->get_cart_contents_count(); ?>
     <div class="custom-cart">
         <?php if ($cart_count > 0) { ?>
@@ -250,8 +158,6 @@ function custom_cart_content()
     </div>
 
 <?php
-
-    // return ob_get_clean();
 }
 
 // CUSTOM CLIENT ACCOUNT pour woo-commerce
@@ -265,7 +171,8 @@ function custom_account_link()
                 ?>
             <a href="<?php echo $my_account_url; ?>" class="imgCart">
                 <img src="<?php echo get_template_directory_uri(); ?>/svg/account.svg" alt="Panier Reverie et petits plis">
-                <p class="connectTxtSideBar">Mon Compte</p></a>
+                <p class="connectTxtSideBar">Mon Compte</p>
+            </a>
         <?php } else {
                 $custom_account_url = home_url('/page-dinscription'); // URL de votre page de connexion personnalisée
                 ?>
@@ -315,40 +222,35 @@ add_action('wp_logout', 'custom_logout_redirect_logOut');
 
 $current_user = wp_get_current_user();
 
-// if (isset($_POST['change_password'])) {
-//     $new_password = $_POST['new_password'];
-//     $current_user_id = $current_user->ID;
+function change_password() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['new_password']) && isset($_POST['confirm_password'])) {
+            $newPassword = $_POST['new_password'];
+            $confirmPassword = $_POST['confirm_password'];
 
-//     if (!empty($new_password)) {
-//         wp_set_password($new_password, $current_user_id);
-
-//         wp_redirect(home_url('/page-dinscription/'));
-//         exit;
-//     }
-// }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['new_password']) && isset($_POST['confirm_password'])) {
-        $newPassword = $_POST['new_password'];
-        $confirmPassword = $_POST['confirm_password'];
-
-        // Vérification que les deux champs de mot de passe correspondent
-        if ($newPassword === $confirmPassword) {
-            // Vérification de la qualité sécuritaire du mot de passe
-            if (strlen($newPassword) >= 8 && preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]{8,}$/', $newPassword)) {
-                // Les mots de passe correspondent et répondent aux normes de sécurité
-                // Vous pouvez maintenant traiter le changement de mot de passe en toute sécurité
-                echo "Le mot de passe a été changé avec succès.";
+            // Vérification que les deux champs de mot de passe correspondent
+            if ($newPassword === $confirmPassword) {
+                // Vérification de la qualité sécuritaire du mot de passe
+                if (strlen($newPassword) >= 8 && preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]{8,}$/', $newPassword)) {
+                    // Les mots de passe correspondent et répondent aux normes de sécurité
+                    // Vous pouvez maintenant traiter le changement de mot de passe en toute sécurité
+                    echo "Le mot de passe a été changé avec succès.";
+                } else {
+                    echo "Le mot de passe ne répond pas aux normes de sécurité actuelles.";
+                }
             } else {
-                echo "Le mot de passe ne répond pas aux normes de sécurité actuelles.";
+                echo "Les mots de passe ne correspondent pas. Veuillez les saisir à nouveau.";
             }
         } else {
-            echo "Les mots de passe ne correspondent pas. Veuillez les saisir à nouveau.";
+            echo "Veuillez fournir un nouveau mot de passe et le confirmer.";
         }
-    } else {
-        echo "Veuillez fournir un nouveau mot de passe et le confirmer.";
     }
+    wp_die(); // Termine le script WordPress
 }
+
+add_action('wp_ajax_change_password', 'change_password');
+add_action('wp_ajax_nopriv_change_password', 'change_password');
+
 
 if (is_user_logged_in() && wc_get_customer_order_count($current_user->ID) > 0) {
     $user_email = $current_user->user_email;
@@ -405,7 +307,4 @@ if ($order_count > 0) {
     // echo '<span for="billing_company">Nom de l\'entreprise : ' . esc_attr($billing_state) . '</span>';
     echo '<span for="billing_company">Code postal : ' . esc_attr($billing_postcode) . '</span>';
 }
-
-
-// -------------------------------------CUSTOM-LOGIN-TEMPLATE--------------------------------------------
-
+?>

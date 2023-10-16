@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-
 <!-- --------------------------SLIDER-HOME----------------------- -->
 <section class="slider-container">
     <div class="swiper-container swiper-container-home">

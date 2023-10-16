@@ -37,11 +37,9 @@
   justify-content: center;
   letter-spacing: 0.25px;
   line-height: normal;
-  /* max-width: 100%; */
   overflow: visible;
   padding: 1em 2em;
   position: relative;
-  /* text-align: center; */
   text-transform: none;
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -71,11 +69,9 @@
   justify-content: center;
   letter-spacing: 0.25px;
   line-height: normal;
-  /* max-width: 100%; */
   overflow: visible;
   padding: 1em 2em;
   position: relative;
-  /* text-align: center; */
   text-transform: none;
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -105,11 +101,9 @@
   justify-content: center;
   letter-spacing: 0.25px;
   line-height: normal;
-  /* max-width: 100%; */
   overflow: visible;
   padding: 1em 2em;
   position: relative;
-  /* text-align: center; */
   text-transform: none;
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
@@ -143,11 +137,9 @@
   justify-content: center;
   letter-spacing: 0.25px;
   line-height: normal;
-  /* max-width: 100%; */
   overflow: visible;
   padding: 1em 2em;
   position: relative;
-  /* text-align: center; */
   text-transform: none;
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
