@@ -1,4 +1,4 @@
-function filterContent(selector, actionName, dataKey) {
+function filterContent1(selector, actionName, dataKey) {
   var categoryLinks = document.querySelectorAll(selector);
 
   categoryLinks.forEach(function (link) {
@@ -37,7 +37,7 @@ function filterContent(selector, actionName, dataKey) {
 }
 
 // Filtrer les articles
-filterContent(
+filterContent1(
   ".category-link-articles",
   "filter_articles_page",
   "data-category-articles"

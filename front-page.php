@@ -58,139 +58,46 @@
         </div>
     </div>
 </div>
-<!-- --------------------------SEPARATOR-------------------------- -->
-<div class="lower-section section-divider-lower">
-    <!-- --------------------------ARTICLES--------------------------- -->
-    <div class="containerActualites">
-        <!-- ----------------AFFICHAGE DES ARTICLES------------------- -->
-        <div class="container-news">
-            <h1 class="titleNews">Mes dernières actualités</h1>
-            <div class="containerSelectAjaxArticles">
-                <!-- ----------------BTN Filtrage Catégories AJAX------------------- -->
-                <div class="category-filter">
-                    <div class="category-links">
-                        <!-- <label for="category-select">Filtrer par catégorie :</label> -->
-                        <a href="#" data-category="0" class="category-link slide-news">Toutes les catégories</a>
-                        <?php
-                        $categories = get_categories();
-                        foreach ($categories as $category) {
-                            echo '<a href="#" data-category="' . $category->term_id . '" class="category-link slide-news">' . $category->name . '</a>';
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <div class="containerWrapperNews">
-                <div class="wrapper-news">
-                    <?php
-                    $args = array(
-                        'post_type' => 'post',
-                        'posts_per_page' => 4,
-                    );
 
-                    $query = new WP_Query($args);
-
-                    if ($query->have_posts()) :
-                        while ($query->have_posts()) : $query->the_post();
-                            ?>
-                            <div class="slider-news-home">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php
-                                            if (has_post_thumbnail()) {
-                                                ?>
-                                        <div class="featured-image">
-                                            <?php the_post_thumbnail('thumbnail');
-                                                        ?>
-                                        </div>
-                                    <?php } ?>
-                                    <h2><?php the_title(); ?></h2>
-                                    <?php the_excerpt(); ?>
-                                </a>
-                            </div>
-                    <?php
-                        endwhile;
-                        wp_reset_postdata();
-                    endif;
-                    ?>
-                </div>
-            </div>
-
-            <!-- Ajoutez les boutons de navigation Swiper ici si vous le souhaitez -->
-        </div>
+<!-- --------------------------ARTICLES--------------------------- -->
+<div class="containerSideBarArticles">
+    <div class="containerSideBarArticlesAlignement">
+        <label for="category-select">Filtrer par catégorie :</label>
+        <a href="#" data-category-articles="0" class="category-link-articles slide-news">Toutes les catégories</a>
+        <?php
+        $categories = get_categories();
+        foreach ($categories as $category) {
+            echo '<a href="#" data-category-articles="' . $category->term_id . '" class="category-link-articles slide-news">' . $category->name . '</a>';
+        }
+        ?>
     </div>
 </div>
-<!-- -------------------------SEPARATOR--------------------------- -->
-<div class="lower-section-articles section-divider-lower-articles-single">
-    <div class="swiper-container-articles-single">
-        <h1 class="titreSingleArticlesSimilaires">Nos meilleurs ventes</h1>
-        <div class="swiper-wrapper">
+
+<div class="wrapper-news-articles">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+            
             <?php
             $args = array(
-                'post_type' => 'product', // Récupérer des produits WooCommerce
-                'posts_per_page' => 12, // Limitez à 12 produits
-                'meta_query' => array(
-                    'relation' => 'OR',
-                    array(
-                        'key' => '_sale_price',
-                        'value' => 0,
-                        'compare' => '>',
-                        'type' => 'NUMERIC'
-                    ),
-                ),
-                'orderby' => 'date',
-                'order' => 'DESC', // Du plus récent au plus ancien
+                'post_type' => 'post',
+                'posts_per_page' => 4,  // Limitez le nombre d'articles à 4 pour la page d'accueil
             );
 
             $query = new WP_Query($args);
 
             if ($query->have_posts()) :
-                $count = 0;
-                while ($query->have_posts()) : $query->the_post();
-                    if ($count % 4 == 0) {
-                        ?>
-                        <div class="swiper-slide">
-                        <?php
-                                }
-                                ?>
-
-                        <div class="swiper-content">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php
-                                        if (has_post_thumbnail()) {
-                                            ?>
-                                    <div class="featured-image">
-                                        <?php the_post_thumbnail('thumbnail'); ?>
-                                    </div>
-                                <?php } ?>
-                                <h2><?php the_title(); ?></h2>
-                                <?php the_excerpt(); ?>
-
-                                <span class="product-price"><?php echo get_post_meta(get_the_ID(), 'product_price', true); ?></span>
-
-                                <div class="containerbtnSliderProductSingle">
-                                    <div class="btnSliderProductSingle"><?php woocommerce_template_loop_add_to_cart(); ?></div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <?php
-                                if ($count % 4 == 3 || $count == 11) { // Fermez le groupe de 4 produits (12 produits au total)
-                                    ?>
-                        </div>
-            <?php
-                    }
-                    $count++;
+                while ($query->have_posts()) :
+                    $query->the_post();
+                    // Affichez le contenu de l'article
+                    get_template_part('content', 'article');
                 endwhile;
-                wp_reset_postdata();
+            else :
+                get_template_part('content', 'none');
             endif;
+            wp_reset_postdata();
             ?>
-        </div>
-        <div class="swiper-button-next-article-single">
-            <div class="arrow-nav-slider-article-right"></div>
-        </div>
-        <div class="swiper-button-prev-article-single">
-            <div class="arrow-nav-slider-article-left"></div>
-        </div>
+
+        </main>
     </div>
 </div>
 
