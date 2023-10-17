@@ -30,35 +30,31 @@
 <div class="all-categories-articles">
 </div>
 <div class="containerInfoArticles">
-    <div class="wrapper-news-articles">
-        <?php
-        $args = array(
-            'post_type' => 'post', // Afficher uniquement les articles de type "post"
-            'posts_per_page' => -1, // Récupérer tous les articles
-        );
+<div class="wrapper-news-articles">
+    <?php
+    $args = array(
+        'post_type' => 'post', // Afficher uniquement les articles de type "post"
+        'posts_per_page' => -1, // Récupérer tous les articles
+    );
 
-        $blog_query = new WP_Query($args);
+    $blog_query = new WP_Query($args);
 
-        if ($blog_query->have_posts()) :
-            while ($blog_query->have_posts()) :
-                $blog_query->the_post();
-                ?>
+    if ($blog_query->have_posts()) :
+        while ($blog_query->have_posts()) :
+            $blog_query->the_post();
 
-                <div class="blog-post">
-                    <h2><?php the_title(); ?></h2>
-                    <?php the_content(); ?>
-                </div>
+            get_template_part('templates/content', 'article');
 
-            <?php
-                endwhile;
-                wp_reset_postdata(); // Réinitialiser la requête WordPress
-            else :
-                ?>
-            <p>Aucun article trouvé.</p>
-        <?php
-        endif;
+        endwhile;
+        wp_reset_postdata(); // Réinitialiser la requête WordPress
+    else :
         ?>
-    </div>
+        <p>Aucun article trouvé.</p>
+    <?php
+    endif;
+    ?>
+</div>
+
 </div>
 
 
