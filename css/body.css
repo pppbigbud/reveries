@@ -83,6 +83,10 @@ label {
   letter-spacing: 0.5;
 }
 
+.hidden {
+  display: none;
+}
+
 #message-container {
   display: none;
   width: 20vw;

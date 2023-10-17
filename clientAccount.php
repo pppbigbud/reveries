@@ -9,11 +9,13 @@
 
 */
 
-?>
+function add_custom_script_to_head() {
+    echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/path/to/messagePopUp.js"></script>';
+}
 
-<?php get_header(); ?>
+add_action('wp_head', 'add_custom_script_to_head');
 
-<?php
+get_header(); 
 
 defined('ABSPATH') || exit;
 

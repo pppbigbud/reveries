@@ -8,6 +8,14 @@
   Template Post Type: post, page, product
 
 */
+
+function add_custom_script_to_head() {
+    echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/path/to/messagePopUp.js"></script>';
+}
+
+add_action('wp_head', 'add_custom_script_to_head');
+
+
 if (is_user_logged_in() && current_user_can('administrator')) {
     wp_redirect(admin_url());
     exit;
@@ -21,26 +29,33 @@ if (isset($_POST['register-submit'])) {
     $email = sanitize_email($_POST['email']);
     $password = esc_attr($_POST['password']);
 
-    // Appel de la fonction de validation du mot de passe
-    $password_result = check_password_complexity($password, $password);
+    // Créez un nouvel utilisateur
+    $user_id = wp_create_user($username, $password, $email);
 
-    if ($password_result === "valid") {
-        $user_id = wp_create_user($username, $password, $email);
-
-        if (is_wp_error($user_id)) {
-            echo 'Erreur lors de l\'inscription : ' . $user_id->get_error_message();
-        } else {
-            $user = get_user_by('ID', $user_id);
-            wp_set_current_user($user_id, $user->user_login);
-            wp_set_auth_cookie($user_id);
-            wp_redirect(home_url());
-            exit;
-        }
+    if (is_wp_error($user_id)) {
+        echo 'Erreur lors de l\'inscription : ' . $user_id->get_error_message();
     } else {
-        // Affichez les messages d'erreur appropriés ici
-        echo $password_result;
+        // Générez un token d'activation unique
+        $activation_token = wp_generate_password(32, false);
+
+        // Enregistrez le token dans les user_meta
+        update_user_meta($user_id, '_activation_token', $activation_token);
+
+        // Envoyez un email d'activation
+        $activation_link = home_url('/activation/?token=' . $activation_token); // Lien de la page de validation
+        $subject = 'Activation de votre compte';
+        $message = 'Cliquez sur le lien suivant pour activer votre compte : ' . $activation_link;
+
+        wp_mail($email, $subject, $message);
+
+        // Connexion automatique de l'utilisateur après l'inscription
+        wp_set_current_user($user_id, $username);
+        wp_set_auth_cookie($user_id);
+        wp_redirect(home_url()); // Redirigez l'utilisateur après l'inscription
+        exit;
     }
 }
+
 
 get_header();
 echo custom_cart_content();

