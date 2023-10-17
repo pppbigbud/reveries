@@ -59,9 +59,12 @@ function load_scripts_and_styles_conditionally()
         wp_enqueue_style('frontPagePresentation', get_template_directory_uri() . '/css/frontPagePresentation.css', array(), '1.0', 'all');
         wp_enqueue_style('frontPageBoutique', get_template_directory_uri() . '/css/frontPageBoutique.css', array(), '1.0', 'all');
         wp_enqueue_style('frontPageActu', get_template_directory_uri() . '/css/frontPageActu.css', array(), '1.0', 'all');
+        wp_enqueue_style('articlesPage', get_template_directory_uri() . '/css/articlesPage.css', array(), '1.0', 'all');
         wp_enqueue_style('filterAjax', get_template_directory_uri() . '/css/filterAjax.css', array(), '1.0', 'all');
         wp_enqueue_style('cardsNews', get_template_directory_uri() . '/css/cardsNews.css', array(), '1.0', 'all');
+        wp_enqueue_style('articlesSingle', get_template_directory_uri() . '/css/articlesSingle.css', array(), '1.0', 'all');
 
+        wp_enqueue_script('responsiveCardsProduct', get_template_directory_uri() . '/js/responsiveCardsProduct.js', array('jquery'), '1.0', true);
         wp_enqueue_script('ajaxFilter4derniers', get_template_directory_uri() . '/js/ajaxFilter4derniers.js', array('jquery'), '1.0', true);
         wp_localize_script('ajaxFilter4derniers', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
     }

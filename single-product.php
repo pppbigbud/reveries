@@ -7,7 +7,7 @@
  *
  * @package Page_Single_Product
  * @author Display Name <username@example.com>
- * @version 1.0.0
+ * @version 1.6.4
  * @copyright (c) 2023 WebCrafted
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPL 2.0
  */

@@ -86,3 +86,34 @@
   color: var(--couleur-5);
   opacity: 0.2;
 }
+
+/* ---------------------------------SLIDER ACCUEIL AVEC PRODUCT---------------------------------*/
+/* Style de base pour les grands écrans */
+/* Vous pouvez adapter ces styles en fonction de vos besoins */
+
+@media (min-width: 768px) {
+  .swiper-slide {
+    width: 25%; /* Affiche 4 produits par ligne sur les grands écrans */
+  }
+}
+
+/* Appliquer des styles différents pour les écrans moyens */
+@media (max-width: 767px) {
+  .swiper-slide {
+    width: 33.33%; /* Affiche 3 produits par ligne sur les écrans moyens */
+  }
+}
+
+/* Appliquer des styles différents pour les petits écrans */
+@media (max-width: 480px) {
+  .swiper-slide {
+    width: 50%; /* Affiche 2 produits par ligne sur les petits écrans */
+  }
+}
+
+/* Appliquer des styles différents pour les écrans très petits */
+@media (max-width: 360px) {
+  .swiper-slide {
+    width: 100%; /* Affiche 1 produit par ligne sur les écrans très petits */
+  }
+}
