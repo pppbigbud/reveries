@@ -277,3 +277,10 @@
 .add_to_cart_button {
   margin-top: 1.5em;
 }
+
+
+.test{
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+}

@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ycvn0392/reveriesetpetitsplis.fr/wp-content/themes/reveries
+    - /bin/cp -R $appdir/* $DEPLOYPATH
+    - /bin/cp -R $appdir/wp-content/themes/reveries/style.css $DEPLOYPATH
+    - /bin/cp -R $appdir/wp-content/themes/reveries/css/accountPage.css $DEPLOYPATH
