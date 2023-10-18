@@ -57,8 +57,10 @@
             ?>
         </div>
     </div>
-    <div class="separtor-page-articles divider-separator-page-articles">
-    </div>
+    <!-- <div class="separtor-page-articles divider-separator-page-articles">
+    </div> -->
+</div>
+<div class="news-separtor-news news-divider-separator-news">
 </div>
 
 <?php get_footer(); ?>
