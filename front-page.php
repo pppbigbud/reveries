@@ -61,7 +61,9 @@
 
 <!-- --------------------------ARTICLES--------------------------- -->
 <div class="home-separtor-page-articles home-divider-separator-page-articles">
-    <h1 class="titleActualites">Mes dernières actualités</h1>
+    <div class="containerTitleActualites">
+        <h1 class="titleActualites">Mes dernières actualités</h1>
+    </div>
     <div class="containerActualites">
         <div class="container-news">
             <label for="category-select">Filtrer par catégorie :</label>
@@ -74,28 +76,29 @@
             ?>
         </div>
     </div>
+    <div class="containerTitleActualites">
+        <div class="wrapper-news-articles">
+            <?php
+            $args = array(
+                'post_type' => 'post',
+                'posts_per_page' => 3,  // Limitez le nombre d'articles à 3 pour la page d'accueil
+            );
 
-    <div class="wrapper-news-articles">
-        <?php
-        $args = array(
-            'post_type' => 'post',
-            'posts_per_page' => 3,  // Limitez le nombre d'articles à 3 pour la page d'accueil
-        );
+            $query = new WP_Query($args);
 
-        $query = new WP_Query($args);
+            if ($query->have_posts()) :
+                while ($query->have_posts()) :
+                    $query->the_post();
+                    get_template_part('templates/content', 'article');
+                endwhile;
+            else :
+                get_template_part('templates/content', 'none');
+            endif;
+            wp_reset_postdata();
+            ?>
 
-        if ($query->have_posts()) :
-            while ($query->have_posts()) :
-                $query->the_post();
-                get_template_part('templates/content', 'article');
-            endwhile;
-        else :
-            get_template_part('templates/content', 'none');
-        endif;
-        wp_reset_postdata();
-        ?>
-
-        </main>
+            </main>
+        </div>
     </div>
 </div>
 

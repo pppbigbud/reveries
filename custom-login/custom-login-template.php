@@ -9,11 +9,11 @@
 
 */
 
-function add_custom_script_to_head() {
-    echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/path/to/messagePopUp.js"></script>';
-}
+// function add_custom_script_to_head() {
+//     echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/js/messagePopUp.js"></script>';
+// }
 
-add_action('wp_head', 'add_custom_script_to_head');
+// add_action('wp_head', 'add_custom_script_to_head');
 
 
 if (is_user_logged_in() && current_user_can('administrator')) {

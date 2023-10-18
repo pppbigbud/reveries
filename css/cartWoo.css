@@ -57,8 +57,6 @@
     rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
 
-
-
 .custom-account {
   display: flex;
   flex-direction: column;
@@ -75,13 +73,11 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
     rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   z-index: 500;
-
 }
 
 .custom-account:hover {
   background: var(--couleur-3);
   color: var(--couleur-5);
-
 }
 
 .custom-account:active {
@@ -155,7 +151,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -5vh;
+  margin-top: 5vh;
   margin-bottom: 15vh;
 }
 
@@ -170,18 +166,30 @@
 
 .woocommerce-message {
   border: 1.5px dashed var(--couleur-3);
+  background-color: var(--couleur-0) !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
 }
 
 .woocommerce-info {
   border: 1.5px dashed var(--couleur-3);
+  background-color: var(--couleur-0) !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+  rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  margin-bottom: 3vh!important;
 }
 
 .woocommerce-error {
   border: 1.5px dashed var(--couleur-3);
+  background-color: var(--couleur-0) !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
 }
 
 .shop_table {
-  background-color: var(--couleur-7);
+  background-color: var(--couleur-0) !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
 }
 
 .woocommerce-cart-form {
@@ -289,7 +297,7 @@
   align-items: center;
   justify-content: center;
   position: fixed;
-  top: 5vh;
+  top: 3.5vh;
   right: 8vh;
   background-color: var(--couleur-1);
   border: 1.5px dashed var(--couleur-4);

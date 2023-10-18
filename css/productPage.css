@@ -178,9 +178,9 @@
 .containerbtnSliderProductSingle {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
-.btnSliderProductSingle {
-  width: 50%;
-}
+/* .btnSliderProductSingle {
+  width: 100%;
+} */

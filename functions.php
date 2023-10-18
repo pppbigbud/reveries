@@ -52,6 +52,7 @@ function load_scripts_and_styles_conditionally()
     wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1.0', true);
     wp_enqueue_script('animeCloudJS', get_template_directory_uri() . '/js/animeClouds.js', array(), '1.0', true);
     wp_enqueue_script('ligthBoxProduct', get_template_directory_uri() . '/js/ligthBoxProduct.js', array(), '1.0', true);
+    wp_enqueue_script('cartCount', get_template_directory_uri() . '/js/cartCount.js', array(), '1.0', true);
 
 
     if (is_front_page()) {
@@ -246,14 +247,15 @@ function custom_account_link()
 <?php
 }
 
+// ------------------------------------TOUTES LES FONCTIONS UTILISATEURS----------------------------------------
 
 // Attribuer le rôle aux utilisateurs lors de leur inscription via WooCommerce
-function assign_woocommerce_customer_role($user_id)
-{
-    $user = new WP_User($user_id);
-    $user->add_role('woocommerce_customer');
-}
-add_action('woocommerce_created_customer', 'assign_woocommerce_customer_role');
+// function assign_woocommerce_customer_role($user_id)
+// {
+//     $user = new WP_User($user_id);
+//     $user->add_role('woocommerce_customer');
+// }
+// add_action('woocommerce_created_customer', 'assign_woocommerce_customer_role');
 
 
 // REDIR when Client is Log

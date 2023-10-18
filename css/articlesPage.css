@@ -47,7 +47,7 @@
   column-count: 3; /* Définit le nombre de colonnes souhaité */
   column-gap: 20px; /* Espacement entre les colonnes */
   padding: 1rem;
-  margin-bottom: 10vh;
+  padding-bottom: 10vh;
   opacity: 0;
   animation: fadeIn 1s ease-in forwards;
 }
@@ -105,7 +105,7 @@
   width: auto;
   will-change: transform, opacity;
   z-index: 0;
-  border: 1.5px dashed var(--couleur-5);
+  border: 1.5px dashed var(--couleur-3);
   break-inside: avoid;
   opacity: 0;
   animation: fadeIn 0.3s ease-in forwards;

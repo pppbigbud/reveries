@@ -10,7 +10,7 @@
 */
 
 function add_custom_script_to_head() {
-    echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/path/to/messagePopUp.js"></script>';
+    echo '<script type="text/javascript" src="' . get_template_directory_uri() . '/js/messagePopUp.js"></script>';
 }
 
 add_action('wp_head', 'add_custom_script_to_head');
