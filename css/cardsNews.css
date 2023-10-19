@@ -69,3 +69,25 @@
   box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
     rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
+
+/* ---------------------------------------------------MEDIA QUERY--------------------------------------- */
+
+@media (orientation: portrait) {
+  .slide-news {
+    max-width: 35vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0.5em;
+    margin-right: 0;
+  }
+
+  .slide-news p {
+    font-size: smaller;
+  }
+
+  .slide-news h1 {
+    font-size: 4vw;
+  }
+}

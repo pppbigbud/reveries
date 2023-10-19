@@ -34,8 +34,7 @@
   opacity: 1;
 }
 
-
-.containerMenu ul li span{
+.containerMenu ul li span {
   font-family: Nunito Sans;
   font-size: 1rem;
   font-weight: 400;
@@ -43,17 +42,25 @@
   margin-top: 5px;
 }
 
-.containerMenu ul li:hover span{
+.containerMenu ul li:hover span {
   font-size: 1.1rem;
   font-weight: 425;
   letter-spacing: 0.5px;
   color: var(--couleur-4);
 }
 
-.containerMenu ul li span a{
+.containerMenu ul li span a {
   color: var(--couleur-5);
 }
 
-.containerMenu ul li span a{
+.containerMenu ul li span a {
   color: var(--couleur-5);
+}
+
+/* ---------------------------------------------------MEDIA QUERY--------------------------------------- */
+
+@media (orientation: portrait) {
+  .containerMenu {
+    display: none;
+  }
 }

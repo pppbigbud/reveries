@@ -75,3 +75,57 @@
   height: auto;
   padding-left: 3vw;
 }
+
+/* ---------------------------------------------------MEDIA QUERY--------------------------------------- */
+
+@media (orientation: portrait) {
+  .containerNewsImgTxt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vh;
+  }
+
+  .imgDesk img {
+    width: 70vw;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .titleNews {
+    padding-top: 0.5vw;
+    padding-left: 0.5vw;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+    color: var(--couleur-5);
+    font-size: 8vw;
+  }
+
+  .txtInfoWhoIm {
+    width: 85vw;
+    height: auto;
+  }
+
+  .txtInfoWhoIm h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+    font-size: 7vw;
+  }
+
+  .txtInfoWhoIm p {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 5vh;
+    font-size: 3.5vw;
+  }
+
+  .containerInfo::before {
+    display: none;
+    background-image: none;
+  }
+}

@@ -87,33 +87,66 @@
   opacity: 0.2;
 }
 
-/* ---------------------------------SLIDER ACCUEIL AVEC PRODUCT---------------------------------*/
-/* Style de base pour les grands écrans */
-/* Vous pouvez adapter ces styles en fonction de vos besoins */
+/* ---------------------------------------------------MEDIA QUERY--------------------------------------- */
 
-@media (min-width: 768px) {
-  .swiper-slide {
-    width: 25%; /* Affiche 4 produits par ligne sur les grands écrans */
+@media (orientation: portrait) {
+  .slider-container {
+    width: 100vw;
+    height: auto;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-}
 
-/* Appliquer des styles différents pour les écrans moyens */
-@media (max-width: 767px) {
   .swiper-slide {
-    width: 33.33%; /* Affiche 3 produits par ligne sur les écrans moyens */
+    background-size: contain;
+    background-position: center;
+    height: auto;
+    margin-bottom: 10vh;
   }
-}
 
-/* Appliquer des styles différents pour les petits écrans */
-@media (max-width: 480px) {
-  .swiper-slide {
-    width: 50%; /* Affiche 2 produits par ligne sur les petits écrans */
+  .imgContainerSliderHome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
 
-/* Appliquer des styles différents pour les écrans très petits */
-@media (max-width: 360px) {
-  .swiper-slide {
-    width: 100%; /* Affiche 1 produit par ligne sur les écrans très petits */
+  .swiper-slide img {
+    width: 30%;
+    height: auto;
+    padding-left: 2.5vw;
+    margin-right: 2.5vw;
+  }
+
+  .textInsideSlider {
+    max-height: 20vh;
+    margin-left: 0;
+  }
+
+  .textInsideSlider p {
+    display: none;
+  }
+
+  /* -------------------------SWIPER BULLET & ARROW----------------------- */
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    margin: 0;
+    color: white;
+  }
+
+  .swiper-button-next {
+    right: 5px;
+    top: 20vh;
+  }
+
+  .swiper-button-prev {
+    left: 5px;
+    top: 20vh;
+  }
+
+  .swiper-pagination {
+    display: none;
   }
 }

@@ -3,6 +3,7 @@ body {
   padding: 0;
   background-color: #fffcf6;
   overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
 
 body::before {

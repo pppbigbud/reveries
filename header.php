@@ -9,8 +9,10 @@
 </head>
 
 <body <?php body_class(); ?>>
-  <?php echo custom_cart_content(); ?>
-  <?php echo custom_account_link(); ?>
+  <div class="containerNavAccountCart">
+    <?php echo custom_cart_content(); ?>
+    <?php echo custom_account_link(); ?>
+  </div>
   <!-- ---------------------------CLOUD---------------------------- -->
   <div class="containerCloud">
     <div class="cloudBackgroundHeader"></div>
